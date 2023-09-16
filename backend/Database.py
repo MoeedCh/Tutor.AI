@@ -190,3 +190,4 @@ class Database:
         # Hash the file name to create a unique index name
         index_name = hashlib.sha256(book_file_name.encode()).hexdigest()
         return index_name
+
