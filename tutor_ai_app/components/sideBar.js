@@ -1,32 +1,28 @@
-import React from 'react'
-import {useState} from 'react';
+import React, { useState } from 'react';
+import Draggable from 'react-draggable';
+import { Resizable } from 'react-resizable';
 
 function SideBar() {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [width, setWidth] = useState(250); // Initial width of the sidebar
 
-  const toggleCollapse = () => {
-    setIsCollapsed(!isCollapsed);
+  const onResize = (event, { size }) => {
+    setWidth(size.width);
   };
 
   return (
-    <aside className="row-span-4 col-span-1">
-      {isCollapsed ? null : (
-        <div className="flex flex-col h-screen overflow-y-auto bg-gray-800">
-          <div className="p-4">
-              <h1 className="text-white">HELLO</h1>
-              <h1 className="text-white">HELLO FU</h1>
-              <h1 className="text-white">HELLO CK</h1>
-              <h1 className="text-white">HELLO ER</h1>
-          </div>
-          <button onClick={toggleCollapse}>
-            {isCollapsed? 'Expand' : 'Collapse'}
-          </button>
-      </div>
-      )}
-    </aside>
-    
-  )
+      <Resizable
+        width={width}
+        height={Infinity}
+        onResize={onResize}
+        handle={<div className="drag-handle">Drag Here</div>}
+      >
+        <div className="bg-slate-600 p-4" style={{ width: `${width}px` }}>
+          {/* Content of the sidebar */}
+          Sidebar Content
+        </div>
+      </Resizable>
 
+  );
 }
 
-export default SideBar
+export default SideBar;
