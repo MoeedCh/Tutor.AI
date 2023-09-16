@@ -49,14 +49,6 @@ class VectorDatabase:
                 documents.append(text_splitter.split_documents(l))
         return documents
 
-    def add_txt(self, document_path):
-        raw_documents = TextLoader(document_path)
-        return self.split_text(raw_documents.load())
-
-    def add_pdf(self, pdf_path):
-        loader = PyPDFLoader(pdf_path)
-        return self.split_text(loader.load())
-
     def add_epub(self, epub_path):
         book = epub.read_epub(epub_path)
         text = []
@@ -78,16 +70,16 @@ class VectorDatabase:
 
 
 vdb = VectorDatabase()
-vdb.add_chapters_from_epub("../bookdata/2018FundamentalsOfCppProgramming_2018_fundamentals-of-cpp-programming.epub")
+# vdb.add_chapters_from_epub("../bookdata/2018FundamentalsOfCppProgramming_2018_fundamentals-of-cpp-programming.epub")
 
-# llm = ChatOpenAI(model_name="gpt-3.5-turbo")
-#
-# qa = ConversationalRetrievalChain.from_llm(llm, retriever=vdb.load_index("python-books_A_Practical_Introduction_to_Python_Programming_Heinold.epub/Chapter 22").as_retriever())
-# question = "Restructure this content into its Key Concepts. Under each Key Concept, provide a detailed explanation. Serve the response in Markdown format."
-# chat_history = []
-#
-# result = qa({"question": question, "chat_history": chat_history})
-# chat_history.append((question, result["answer"]))
-# print(f"Question: \n {question} \n")
-# print(f"Answer: \n {result['answer']} \n")
-# print("------------------------------------------------------- \n")
+llm = ChatOpenAI(model_name="gpt-3.5-turbo")
+
+qa = ConversationalRetrievalChain.from_llm(llm, retriever=vdb.load_index("2018FundamentalsOfCppProgramming_2018_fundamentals-of-cpp-programming.epub/Chapter 22").as_retriever())
+question = "Restructure this content into its Key Concepts. Under each Key Concept, provide a detailed explanation. Serve the response in Markdown format."
+chat_history = []
+
+result = qa({"question": question, "chat_history": chat_history})
+chat_history.append((question, result["answer"]))
+print(f"Question: \n {question} \n")
+print(f"Answer: \n {result['answer']} \n")
+print("------------------------------------------------------- \n")

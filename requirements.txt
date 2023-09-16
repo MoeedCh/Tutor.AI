@@ -152,3 +152,5 @@ websocket-client==1.6.1
 Werkzeug==2.3.6
 widgetsnbextension==4.0.8
 yarl==1.9.2
+
+watchdog~=3.0.0
