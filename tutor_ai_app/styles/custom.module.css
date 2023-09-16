@@ -241,4 +241,60 @@
   align-items: center;
 }
 
+.logoImage {
+  margin: 0.5rem;
+}
+
 /* End NavBar Component Styles */
+
+/* Sidebar Component Styles */
+
+.course {
+  
+  background-color: #ff9900;
+  /* border-radius: 5px;
+  height: 40px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 200px; */
+}
+
+.courseCard {
+  margin: 1rem;
+  padding: 1rem;
+  text-align: center;
+  color: #393939;
+  background-color: #ff9900;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: color 0.05s ease, border-color 0.05s ease;
+}
+
+.courseCard:hover,
+.courseCard:focus,
+.courseCard:active,
+.logoImage:hover,
+.toggleSidebar:hover {
+  color: white;
+  box-shadow: 0 0 7px white; /* Add a white shadow on hover */
+}
+
+.courseCard h3 {
+  font-size: 1.5rem;
+}
+
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animateSpinSlow {
+  animation: spin-slow 4s linear infinite; /* Adjust the duration as needed */
+}
+
+/* End Sidebar Component Styles */

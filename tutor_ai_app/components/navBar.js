@@ -4,7 +4,7 @@ import ToggleSidebar from "@/components/toggleSidebar";
 import ProfileInfo from "@/components/profileInfo";
 import styles from "../styles/custom.module.css";
 
-const NavBar = ({ userInfo }) => {
+const NavBar = ({ userName }) => {
   return (
     <div className={styles.navBar}>
       <div className="flex justify-left items-center ml-5">
@@ -12,7 +12,7 @@ const NavBar = ({ userInfo }) => {
         <Image src="/images/gray_logo.png" width={200} height={65} />
       </div>
       <div className="flex justify-right items-center mr-5">
-        <ProfileInfo userInfo={userInfo}/>
+        <ProfileInfo userName={userName}/>
       </div>
     </div>
   );

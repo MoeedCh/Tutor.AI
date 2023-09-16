@@ -1,30 +1,46 @@
 import NavBar from "@/components/navBar";
 import SideBar from "@/components/sideBar";
+import Image from "next/image";
 import { useState, useEffect } from "react";
-import { initApp, getUserInfo } from "@/public/firebase/database.js";
+import {
+  initApp,
+  getUserName,
+  getUserCourses,
+} from "@/public/firebase/database.js";
 
 export default function testHome() {
-  const app = initApp();
+  initApp();
+  const [userName, setUserName] = useState(null);
+  const [courses, setCourses] = useState(null);
 
-  const [userInfo, setUserInfo] = useState(null);
-
+  // Load username
   useEffect(() => {
-    async function fetchUserInfo() {
-      const userName = await getUserInfo("Andrew");
-      setUserInfo(userName);
+    async function fetchUserName() {
+      const userName = await getUserName("Andrew");
+      setUserName(userName);
     }
 
-    fetchUserInfo();
+    fetchUserName();
+  }, []);
+
+  // Load courses
+  useEffect(() => {
+    async function fetchCourses() {
+      const courses = await getUserCourses("Andrew");
+      setCourses(courses);
+    }
+
+    fetchCourses();
   }, []);
 
   return (
     <main>
       {/* Navbar */}
-      <NavBar userInfo={userInfo} />
+      <NavBar userName={userName} />
 
-      {/* Sidebar */}
       <div className="grid grid-rows-4 grid-cols-6 min-h-screen">
-        <SideBar />
+      {/* Sidebar */}
+        <SideBar courses={courses} />
 
         {/* Main Content */}
         <section className="row-span-4 col-span-5 bg-blue-300">

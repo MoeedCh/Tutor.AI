@@ -27,7 +27,7 @@ export const initApp = async () => {
   return app;
 };
 
-// do a pull from firebase app
+// do a pull from firebase app to get all data for a user
 export const getUserInfo = async (userId) => {
   const dbRef = ref(db, `dev/users/${userId}`);
 
@@ -35,8 +35,8 @@ export const getUserInfo = async (userId) => {
     const snapshot = await get(dbRef);
 
     if (snapshot.exists()) {
-      const userName = snapshot.val()?.name;
-      return userName;
+      const user = snapshot.val();
+      return user;
     } else {
       console.log("No data available");
       return null;
@@ -46,3 +46,14 @@ export const getUserInfo = async (userId) => {
     return null;
   }
 };
+
+export const getUserName = async (userId) => {
+  const userInfo = await getUserInfo(userId);
+
+  return userInfo?.name;
+}
+
+export const getUserCourses = async (userId) => {
+  const userInfo = await getUserInfo(userId);
+  return userInfo?.Courses;
+}
