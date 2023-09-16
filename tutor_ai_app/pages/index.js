@@ -12,7 +12,7 @@ export default function Home() {
         {/* <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Tutor.AI!</a>
         </h1> */}
-        <Image src="/banner.png" width={800} height={600}/>
+        <Image src="/images/banner.png" width={800} height={600}/>
         <p className={styles.description}>
           Learning made easy, with the help of AI.
         </p>
@@ -21,7 +21,7 @@ export default function Home() {
           <Link href="/signup" className={styles.card}>
               <h3>Create Account &rarr;</h3>
           </Link>
-          <Link href="/login" className={styles.card}>
+          <Link href="/testHome" className={styles.card}>
             <h3>Log In &rarr;</h3>
           </Link>
         </div>

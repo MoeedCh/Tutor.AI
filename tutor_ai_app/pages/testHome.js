@@ -1,19 +1,18 @@
 import NavBar from "@/components/navBar";
 import SideBar from "@/components/sideBar";
-import styles from "../styles/custom.module.css";
+import { initApp, getUserInfo } from "@/public/firebase/database.js";
 
 export default function testHome() {
+    const app = initApp();
+
   return (
     <main>
-      <div className={styles.navBar}>
-        <NavBar />
-      </div>
+      {/* Navbar */}
+        <NavBar userInfo={getUserInfo("Andrew")}/>
 
+      {/* Sidebar */}
       <div className="grid grid-rows-4 grid-cols-6 min-h-screen">
-        {/* Sidebar */}
-        <aside className="row-span-4 col-span-1">
-          <SideBar />
-        </aside>
+        <SideBar />
 
         {/* Main Content */}
         <section className="row-span-4 col-span-5 bg-blue-300">
