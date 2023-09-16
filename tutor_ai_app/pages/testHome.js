@@ -12,7 +12,7 @@ export default function testHome() {
 
             <div className="grid grid-rows-4 grid-cols-6 min-h-screen">
                 {/* Sidebar */}
-                <aside className="row-span-4 col-span-1 bg-gray-600">
+                <aside className="row-span-4 col-span-1">
                     <SideBar />
                 </aside>
 
