@@ -10,8 +10,8 @@ export default function testHome() {
 
   useEffect(() => {
     async function fetchUserInfo() {
-      const userData = await getUserInfo("Andrew");
-      setUserInfo(userData);
+      const userName = await getUserInfo("Andrew");
+      setUserInfo(userName);
     }
 
     fetchUserInfo();
@@ -20,7 +20,7 @@ export default function testHome() {
   return (
     <main>
       {/* Navbar */}
-      <NavBar userInfo={getUserInfo("Andrew")} />
+      <NavBar userInfo={userInfo} />
 
       {/* Sidebar */}
       <div className="grid grid-rows-4 grid-cols-6 min-h-screen">

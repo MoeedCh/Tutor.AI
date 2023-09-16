@@ -28,22 +28,21 @@ export const initApp = async () => {
 };
 
 // do a pull from firebase app
-export const getUserInfo = (userId) => {
-  const dbRef = ref(db);
+export const getUserInfo = async (userId) => {
+  const dbRef = ref(db, `dev/users/${userId}`);
 
-  get(child(dbRef, `dev/users/${userId}`))
-    .then((snapshot) => {
-      if (snapshot.exists()) {
-        const userName = snapshot.val()["name"];
-        console.log(userName);
-        return userName;
-      } else {
-        console.log("No data available");
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  try {
+    const snapshot = await get(dbRef);
 
-  return "Undefined";
+    if (snapshot.exists()) {
+      const userName = snapshot.val()?.name;
+      return userName;
+    } else {
+      console.log("No data available");
+      return null;
+    }
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 };
