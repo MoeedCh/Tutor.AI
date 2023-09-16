@@ -40,11 +40,11 @@ def process_chapter(path_to_epub, prompt, chapter_index):
         f.write(str(result["answer"]))
 
 def generate_markdown(path_to_epub, prompt):
-    #num_chapters = vdb.add_chapters_from_epub(path_to_epub)
+    num_chapters = vdb.add_chapters_from_epub(path_to_epub)
     os.makedirs("cache/" + os.path.basename(path_to_epub), exist_ok=True)
 
     processes = []
-    for i in range(55):
+    for i in range(num_chapters):
         p = multiprocessing.Process(target=process_chapter, args=(path_to_epub, prompt, i))
         processes.append(p)
         p.start()
