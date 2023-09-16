@@ -47,6 +47,7 @@ class Runner:
 #     with Pool() as p:
 #         p.starmap(worker, [(i, path_to_epub, prompt) for i in range(num_chapters)])
 
+
 r = Runner()
 
 r.generate_markdown("../bookdata/python-books_A_Practical_Introduction_to_Python_Programming_Heinold.epub", "Restructure this content into its Key Concepts. Under each Key Concept, provide a detailed explanation. Serve the response in Markdown format use (###) to seperate the key concepts.")
