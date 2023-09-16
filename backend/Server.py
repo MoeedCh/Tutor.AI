@@ -38,13 +38,14 @@ def process_chapter(path_to_epub, prompt, chapter_index):
     result = qa({"question": prompt, "chat_history": chat_history})
     with open("cache/" + os.path.basename(path_to_epub) + "/" + str(chapter_index) + ".md", "w+") as f:
         f.write(str(result["answer"]))
+        f.close()
 
 def generate_markdown(path_to_epub, prompt):
-    #num_chapters = vdb.add_chapters_from_epub(path_to_epub)
+    num_chapters = vdb.add_chapters_from_epub(path_to_epub)
     os.makedirs("cache/" + os.path.basename(path_to_epub), exist_ok=True)
 
     processes = []
-    for i in range(10):
+    for i in range(num_chapters):
         p = multiprocessing.Process(target=process_chapter, args=(path_to_epub, prompt, i))
         processes.append(p)
         p.start()
@@ -66,4 +67,4 @@ def choosePrompt(bulletBool, exampleBool, qnaBool):
     return f"Restructure this content into its Key Concepts. Under each Key Concept, provide a detailed explanation{modifier}. Serve the response in Markdown format, use (#) to seperate the key concepts."
 
 def RunBackend(course_name, bulletBool, exampleBool, qnaBool):
-    generate_markdown(f"..{course_name}", choosePrompt(bulletBool, exampleBool, qnaBool))
+    generate_markdown(f"../{course_name}", choosePrompt(bulletBool, exampleBool, qnaBool))
