@@ -9,6 +9,7 @@
   }
   
   .title a {
+    font-weight: bold;
     color: #FF9900;
     text-decoration: none;
   }

@@ -19,93 +19,13 @@ export default function Home() {
         <div className={styles.grid}>
           <Link href="/signup" className={styles.card}>
               <h3>Create Account &rarr;</h3>
-            {/* </a> */}
           </Link>
 
           <Link href="/login" className={styles.card}>
             <h3>Log In &rarr;</h3>
           </Link>
         </div>
-        {/*
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div> */}
       </main>
-
-      {/* <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel" className={styles.logo} />
-        </a>
-      </footer> */}
-
-      {/* <style jsx>{`
-      main {
-        padding: 5rem 0;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-      footer {
-        width: 100%;
-        height: 100px;
-        border-top: 1px solid #eaeaea;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      footer img {
-        margin-left: 0.5rem;
-      }
-      footer a {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-decoration: none;
-        color: inherit;
-      }
-      code {
-        background: #fafafa;
-        border-radius: 5px;
-        padding: 0.75rem;
-        font-size: 1.1rem;
-        font-family:
-          Menlo,
-          Monaco,
-          Lucida Console,
-          Liberation Mono,
-          DejaVu Sans Mono,
-          Bitstream Vera Sans Mono,
-          Courier New,
-          monospace;
-      }
-      `}</style> */}
 
       <style jsx global>{`
         html,
@@ -128,7 +48,7 @@ function Header() {
   return (
     <Head>
         <title>Tutor.AI</title>
-        <link rel="icon" href="/cap.png" />
+        <link rel="icon" href="../public/cap.png" />
       </Head>
   )
 }
