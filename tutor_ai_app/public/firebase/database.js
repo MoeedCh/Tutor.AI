@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, onValue, child, get } from "firebase/database";
+import { getDatabase, ref, onValue, get, child } from "firebase/database";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -30,15 +30,20 @@ export const initApp = async () => {
 // do a pull from firebase app
 export const getUserInfo = (userId) => {
   const dbRef = ref(db);
-  get(child(dbRef, `dev/users/${userId}`)).then((snapshot) => {
-    if (snapshot.exists()) {
-      console.log(snapshot.val());
-    } else {
-      console.log("No data available");
-    }
-  }).catch((error) => {
-    console.error(error);
-  });
-  console.log("FUCK");
-  return "FUCK";
+
+  get(child(dbRef, `dev/users/${userId}`))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        const userName = snapshot.val()["name"];
+        console.log(userName);
+        return userName;
+      } else {
+        console.log("No data available");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
+  return "Undefined";
 };
