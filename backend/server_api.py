@@ -1,6 +1,7 @@
 import json
 from flask import Flask, request, jsonify
 import os
+from Server import RunBackend
 
 app = Flask(__name__)
 
@@ -22,12 +23,13 @@ def generate_course():
         # Check if the JSON data is present in the request
         if request_data:
             # Generate a unique filename
-            filename_key = request_data['course_name']
-            filename = os.path.join(JSON_FOLDER, f'{filename_key}.json')
+            course_name = request_data['course_materials']
+            bulletBool = request_data['bulletBool']
+            exampleBool = request_data['exampleBool']
+            qnaBool = request_data['qnaBool']
 
-            # Save the JSON data to a file locally
-            with open(filename, 'w') as json_file:
-                json_file.write(json.dumps(request_data))
+            RunBackend(course_name, bulletBool, exampleBool, qnaBool)
+            
 
             return "Success", 200
         else:

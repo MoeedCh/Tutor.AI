@@ -65,6 +65,5 @@ def choosePrompt(bulletBool, exampleBool, qnaBool):
 
     return f"Restructure this content into its Key Concepts. Under each Key Concept, provide a detailed explanation{modifier}. Serve the response in Markdown format, use (#) to seperate the key concepts."
 
-# r = Runner()
-if __name__ == "__main__":
-    generate_markdown("../bookdata/python-books_A_Practical_Introduction_to_Python_Programming_Heinold.epub", choosePrompt(False, False, True))
+def RunBackend(course_name, bulletBool, exampleBool, qnaBool):
+    generate_markdown(f"..{course_name}", choosePrompt(bulletBool, exampleBool, qnaBool))
