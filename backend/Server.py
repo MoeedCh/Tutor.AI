@@ -52,6 +52,18 @@ def generate_markdown(path_to_epub, prompt):
     for p in processes:
         p.join()
 
+def choosePrompt(bulletBool, exampleBool, qnaBool):
+    modifier = ""
+    modifiers_dict = {"bullet":" in bulleted form", "example":" provide examples (if applicable)", "qna":" and provide a thoughtful question at the end"}
+    
+    if (bulletBool):
+        modifier += modifier['bullet']
+    elif (exampleBool):
+        modifier += modifier['example']
+    elif (qnaBool):
+        modifier += modifier['qnaBool']
+
+    return f"Restructure this content into its Key Concepts. Under each Key Concept, provide a detailed explanation{modifier}. Serve the response in Markdown format, use (#) to seperate the key concepts."
 
 # r = Runner()
 if __name__ == "__main__":

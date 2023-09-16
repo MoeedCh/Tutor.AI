@@ -1,8 +1,8 @@
 {
   "Prompts": {
-    "BasePrompt": "Restructure this content into its Key Concepts. Under each Key Concept, provide a detailed explanation. Serve the response in Markdown format.",
-    "BulletPrompt": "Restructure this content into its Key Concepts in bullet form. Under each Key Concept, provide a detailed explanation. Serve the response in Markdown format.",
-    "ExamplePrompt": "Restructure this content into its Key Concepts. Under each Key Concept, provide a detailed explanation provide examples were applicable. Serve the response in Markdown format."
-
+    "BasePrompt": "Restructure this content into its Key Concepts. Under each Key Concept, provide a detailed explanation. Serve the response in Markdown format, use (#) to seperate the key concepts.",
+    "BulletPrompt": "Restructure this content into its Key Concepts. Under each Key Concept, provide a detailed explanation in bulleted form. Serve the response in Markdown format, use (#) to seperate the key concepts.",
+    "ExamplePrompt": "Restructure this content into its Key Concepts. Under each Key Concept, provide a detailed explanation provide examples where applicable. Serve the response in Markdown format, use (#) to seperate the key concepts.",
+    "QuestionPrompt": "Restructure this content into its Key Concepts. Under each Key Concept, provide a detailed explanation and provide a thoughtful question at the end. Serve the response in Markdown format, use (#) to seperate the key concepts."
   }
 }
