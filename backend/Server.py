@@ -40,11 +40,11 @@ def process_chapter(path_to_epub, prompt, chapter_index):
         f.write(str(result["answer"]))
 
 def generate_markdown(path_to_epub, prompt):
-    num_chapters = vdb.add_chapters_from_epub(path_to_epub)
+    #num_chapters = vdb.add_chapters_from_epub(path_to_epub)
     os.makedirs("cache/" + os.path.basename(path_to_epub), exist_ok=True)
 
     processes = []
-    for i in range(num_chapters):
+    for i in range(10):
         p = multiprocessing.Process(target=process_chapter, args=(path_to_epub, prompt, i))
         processes.append(p)
         p.start()
@@ -57,14 +57,14 @@ def choosePrompt(bulletBool, exampleBool, qnaBool):
     modifiers_dict = {"bullet":" in bulleted form", "example":" provide examples (if applicable)", "qna":" and provide a thoughtful question at the end"}
     
     if (bulletBool):
-        modifier += modifier['bullet']
+        modifier += modifiers_dict['bullet']
     elif (exampleBool):
-        modifier += modifier['example']
+        modifier += modifiers_dict['example']
     elif (qnaBool):
-        modifier += modifier['qnaBool']
+        modifier += modifiers_dict['qna']
 
     return f"Restructure this content into its Key Concepts. Under each Key Concept, provide a detailed explanation{modifier}. Serve the response in Markdown format, use (#) to seperate the key concepts."
 
 # r = Runner()
 if __name__ == "__main__":
-    generate_markdown("../bookdata/python-books_A_Practical_Introduction_to_Python_Programming_Heinold.epub", "Restructure this content into its Key Concepts. Under each Key Concept, provide a detailed explanation. Serve the response in Markdown format use (#) to seperate the key concepts.")
+    generate_markdown("../bookdata/python-books_A_Practical_Introduction_to_Python_Programming_Heinold.epub", choosePrompt(False, False, True))
