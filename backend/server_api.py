@@ -1,7 +1,7 @@
 import json
 from flask import Flask, request, jsonify
 import os
-from Server import RunBackend
+from Server import *
 
 app = Flask(__name__)
 
