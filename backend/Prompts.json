@@ -1,0 +1,8 @@
+{
+  "Prompts": {
+    "BasePrompt": "Restructure this content into its Key Concepts. Under each Key Concept, provide a detailed explanation. Serve the response in Markdown format.",
+    "BulletPrompt": "Restructure this content into its Key Concepts in bullet form. Under each Key Concept, provide a detailed explanation. Serve the response in Markdown format.",
+    "ExamplePrompt": "Restructure this content into its Key Concepts. Under each Key Concept, provide a detailed explanation provide examples were applicable. Serve the response in Markdown format."
+
+  }
+}
