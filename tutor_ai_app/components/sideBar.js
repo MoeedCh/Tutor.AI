@@ -1,14 +1,20 @@
 import React from "react";
 import { useState } from "react";
 import Image from "next/image";
-import Course from "@/components/course";
+import CourseBubble from "@/components/CourseBubble";
+import NewCourseBubble from "@/components/NewCourseBubble";
 import styles from "../styles/custom.module.css";
 
-const SideBar = ({ courses }) => {
+const SideBar = ({ courses, setFocus, setFocusType }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
+  };
+
+  const handleBubbleClick = (className) => {
+    setFocus(className);
+    setFocusType("course");
   };
 
   return (
@@ -16,9 +22,14 @@ const SideBar = ({ courses }) => {
       {isCollapsed ? null : (
         <div className="flex flex-col h-screen overflow-y-auto bg-gray-800">
           {courses !== null ? (
-            Object.keys(courses).map((courseKey) => (
-              <Course key={courseKey} name={courseKey} />
-            ))
+            <>
+              {Object.keys(courses).map((courseName) => (
+                <CourseBubble key={courseName} name={courseName} 
+                onClick={() => handleBubbleClick(courseName)} // Pass the click handler
+                />
+              ))}
+              <NewCourseBubble />
+            </>
           ) : (
             // Center loading spinner vertically and horizontally
             <div className="flex justify-center items-center h-full">

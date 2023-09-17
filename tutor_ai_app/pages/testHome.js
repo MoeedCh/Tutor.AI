@@ -1,36 +1,27 @@
 import NavBar from "@/components/navBar";
 import SideBar from "@/components/sideBar";
-import Image from "next/image";
+import Content from "@/components/Content";
+import styles from "../styles/custom.module.css";
 import { useState, useEffect } from "react";
-import {
-  initApp,
-  getUserName,
-  getUserCourses,
-} from "@/public/firebase/database.js";
+import { initApp, getUserInfo } from "@/public/firebase/database.js";
 
 export default function testHome() {
   initApp();
+  const [focus, setFocus] = useState(null);
+  const [focusType, setFocusType] = useState(null); // course focus vs chapter focus
   const [userName, setUserName] = useState(null);
   const [courses, setCourses] = useState(null);
+  const [user, setUser] = useState(null);
 
-  // Load username
   useEffect(() => {
-    async function fetchUserName() {
-      const userName = await getUserName("Andrew");
-      setUserName(userName);
+    async function fetchUser() {
+      const user = await getUserInfo("Andrew");
+      setUser(user);
+      setUserName(user.name);
+      setCourses(user.Courses);
     }
 
-    fetchUserName();
-  }, []);
-
-  // Load courses
-  useEffect(() => {
-    async function fetchCourses() {
-      const courses = await getUserCourses("Andrew");
-      setCourses(courses);
-    }
-
-    fetchCourses();
+    fetchUser();
   }, []);
 
   return (
@@ -39,12 +30,12 @@ export default function testHome() {
       <NavBar userName={userName} />
 
       <div className="grid grid-rows-4 grid-cols-6 min-h-screen">
-      {/* Sidebar */}
-        <SideBar courses={courses} />
+        {/* Sidebar */}
+        <SideBar courses={courses} setFocus={setFocus} setFocusType={setFocusType}/>
 
         {/* Main Content */}
-        <section className="row-span-4 col-span-5 bg-blue-300">
-          {/* Main content here */}
+        <section className={`row-span-4 col-span-5 ${styles.mainDisplay}`}>
+          <Content courses={courses} focus={focus} setFocusType={setFocusType} focusType={focusType} />
         </section>
       </div>
     </main>
