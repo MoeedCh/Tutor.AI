@@ -1,6 +1,7 @@
 import NavBar from "@/components/navBar";
 import SideBar from "@/components/sideBar";
-import Content from "@/components/Content";
+import CourseContent from "@/components/CourseContent";
+import ChapterContent from "@/components/ChapterContent";
 import styles from "../styles/custom.module.css";
 import { useState, useEffect } from "react";
 import { initApp, getUserInfo } from "@/public/firebase/database.js";
@@ -35,7 +36,12 @@ export default function testHome() {
 
         {/* Main Content */}
         <section className={`row-span-4 col-span-5 ${styles.mainDisplay}`}>
-          <Content courses={courses} focus={focus} setFocusType={setFocusType} focusType={focusType} />
+          {/* Conditionally render CourseContent or ChapterContent based on focusType */}
+          {focusType === "course" ? (
+            <CourseContent courses={courses} focus={focus} setFocus={setFocus} setFocusType={setFocusType} />
+          ) : (
+            <ChapterContent courses={courses} focus={focus} setFocus={setFocus} setFocusType={setFocusType} />
+          )}
         </section>
       </div>
     </main>

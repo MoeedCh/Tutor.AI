@@ -1,9 +1,9 @@
 import styles from "../styles/custom.module.css";
 import { useState, useEffect } from "react";
-import ChapterBubble from "@/components/ChapterBubble";
-import MarkdownComponent from "@/components/Markdown";
+import MarkdownComponent from "./Markdown";
+// import MarkdownComponent from "@/components/Markdown";
 
-const Content = ({ courses, focus, setFocusType, focusType }) => {
+const CourseContent = ({ courses, focus, setFocus, setFocusType }) => {
   const [chapters, setChapters] = useState([]);
   const [markdown, setMarkdown] = useState("");
 
@@ -12,7 +12,7 @@ const Content = ({ courses, focus, setFocusType, focusType }) => {
       if (focus) {
         const chaptersData = courses[focus];
         setChapters(chaptersData);
-        setMarkdown(chaptersData.markdown[0])
+        // setMarkdown(chaptersData.markdown[0])
       }
     }
 
@@ -20,17 +20,11 @@ const Content = ({ courses, focus, setFocusType, focusType }) => {
   }, [focus]);
 
 
-
   return (
     <div className={styles.content}>
       {focus ? (
         <>
           <h1 className={`text-2xl font-bold underline drop-shadow-lg ${styles.shadow}`}>{focus}</h1>
-          <div className={styles.bubbleSpace}>
-            {Object.keys(chapters).map((chapter) => (
-              <ChapterBubble key={chapter} chapterName={chapter} />
-            ))}
-          </div>
           <MarkdownComponent markdown={markdown}/>
         </>
       ) : (
@@ -40,4 +34,4 @@ const Content = ({ courses, focus, setFocusType, focusType }) => {
   );
 };
 
-export default Content;
+export default CourseContent;
