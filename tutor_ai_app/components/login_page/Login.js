@@ -1,61 +1,22 @@
 import React, { useState } from "react";
 import styles from "../../styles/custom.module.css";
-import Link from "next/link";
+import { redirect } from 'next/navigation';
+const CourseForm = ({ setPopup, users }) => {
 
-
-const CourseForm = ({ setPopup }) => {
-  const [file, setFile] = useState(null);
-  const [courseName, setCourseName] = useState(null);
-  const [example, setExample] = useState(false);
-  const [bullet, setBullet] = useState(false);
-  const [qna, setQna] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [username, setUsername] = useState(false);
 
   const onLogin = async () => {
-    // if (!file || (!example && !bullet && !qna) || !courseName) {
-    //   console.error("No file selected");
-    //   return;
-    // }
+    if (users.includes(username)) {
+      sessionStorage.setItem("username", username);
+      // navigate to home page
+      window.location.href = "/home";
+      // redirect to home page
+    }
+  };
 
-    // // send file to api endpoint: http://localhost:1234/api/upload
-    // const formData = new FormData();
-    // formData.append("file", file);
-    // const res = await fetch("http://localhost:1234/api/upload", {
-    //   method: "POST",
-    //   body: formData,
-    // });
-    // const data = await res.json();
-
-    // // send json to api endpoint: http://localhost:1234/api/generate_course
-    // const course_request = {
-    //   user: "Andrew",
-    //   course_name: courseName,
-    //   course_materials: file.name,
-    //   bulletBool: bullet,
-    //   exampleBool: example,
-    //   qnaBool: qna,
-    // };
-
-    // // send json through post request to http://localhost:1234/api/generate_course
-
-    // setLoading(true); // start spinner
-
-    // const course_res = await fetch(
-    //   "http://localhost:1234/api/generate_course",
-    //   {
-    //     method: "POST",
-    //     body: JSON.stringify(course_request),
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   }
-    // );
-
-    // const course_data = await course_res.json();
-    // setLoading(false); // stop spinner
-    // console.log(course_data);
-
-    // setPopup(false);
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
   };
 
   return (
@@ -98,6 +59,7 @@ const CourseForm = ({ setPopup }) => {
                 className={`relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal transition duration-300 ease-in-out focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary`}
                 type="text"
                 placeholder="tutorAI@vt.edu"
+                onChange={(e) => handleUsernameChange(e)}
                 id="courseName"
               />
             </div>
@@ -115,14 +77,14 @@ const CourseForm = ({ setPopup }) => {
             </div>
           </div>
 
-          <Link href="/home" className={styles.formSubmit}>
+          <div className={styles.formSubmit}>
             <div
               onClick={onLogin}
               className="flex flex-col items-center justify-center w-full h-full p-4 space-y-4 "
             >
               <h1>Log In!</h1>
             </div>
-          </Link>
+          </div>
         </div>
       </div>
     </div>

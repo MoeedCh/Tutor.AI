@@ -5,10 +5,9 @@ import ChapterContent from "@/components/main_content/ChapterContent";
 import CourseForm from "@/components/sidebar/CourseForm";
 import styles from "../styles/custom.module.css";
 import { useState, useEffect } from "react";
-import { initApp, getUserInfo } from "@/public/firebase/database.js";
+import { initApp, getUsers, getUserInfo } from "@/public/firebase/database.js";
 
 export default function testHome() {
-  initApp();
   const [user, setUser] = useState(null);
   const [userName, setUserName] = useState(null);
   const [courses, setCourses] = useState(null);
@@ -21,9 +20,10 @@ export default function testHome() {
 
   useEffect(() => {
     async function fetchUser() {
-      const user = await getUserInfo("Andrew");
+      initApp();
+      const user = await getUserInfo(sessionStorage.getItem("username"));
       setUser(user);
-      setUserName(user.name);
+      setUserName(sessionStorage.getItem("username"));
       setCourses(user.Courses);
     }
 
@@ -35,7 +35,7 @@ export default function testHome() {
       {/* Navbar */}
       <NavBar userName={userName} />
 
-      {courseFormOpen && <CourseForm setCourseFormOpen={setCourseFormOpen} />}
+      {courseFormOpen && <CourseForm setCourseFormOpen={setCourseFormOpen} setUser/>}
 
       <div className="grid grid-rows-4 grid-cols-6 min-h-screen">
         {/* Sidebar */}

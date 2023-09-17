@@ -27,6 +27,25 @@ export const initApp = async () => {
   return app;
 };
 
+export const getUsers = async () => {
+  const dbRef = ref(db, `dev/users`);
+
+  try {
+    const snapshot = await get(dbRef);
+
+    if (snapshot.exists()) {
+      const users = snapshot.val();
+      return Object.keys(users);
+    } else {
+      console.log("No data available");
+      return null;
+    }
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
 // do a pull from firebase app to get all data for a user
 export const getUserInfo = async (userId) => {
   const dbRef = ref(db, `dev/users/${userId}`);
@@ -51,15 +70,15 @@ export const getUserName = async (userId) => {
   const userInfo = await getUserInfo(userId);
 
   return userInfo?.name;
-}
+};
 
 export const getUserCourses = async (userId) => {
   const userInfo = await getUserInfo(userId);
   return userInfo?.Courses;
-}
+};
 
 export const getUserCourse = async (userId, courseName) => {
   const courses = await getUserCourses(userId);
 
   return courses[courseName];
-}
+};

@@ -3,9 +3,24 @@ import Link from "next/link";
 import Login from "@/components/login_page/Login"
 import Image from "next/image";
 import styles from "../styles/custom.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { initApp, getUsers, getUserInfo } from "@/public/firebase/database.js";
 
 export default function Home() {
+  initApp();
+
+  const [allUsers, setAllUsers] = useState(null);
+
+  // wrap allUsers in a useEffect to get the data from firebase
+  useEffect(() => {
+    async function fetchAllUsers() {
+      const allUsers = await getUsers();
+      setAllUsers(allUsers);
+    }
+
+    fetchAllUsers();
+  }, []);
+
   const [popup, setPopup] = useState(null);
 
   return (
@@ -13,7 +28,7 @@ export default function Home() {
       <Header />
 
       <main>
-      {popup && <Login setPopup={setPopup} />}
+      {popup && <Login setPopup={setPopup} users={allUsers} />}
         <Image src="/images/banner.png" width={800} height={600} />
         <p className={styles.description}>
           Learning made easy, powered by OpenAI.

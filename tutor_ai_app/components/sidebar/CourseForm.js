@@ -27,7 +27,7 @@ const CourseForm = ({ setCourseFormOpen }) => {
 
     // send json to api endpoint: http://localhost:1234/api/generate_course
     const course_request = {
-      user: "Andrew",
+      user: sessionStorage.getItem("username"),
       course_name: courseName,
       course_materials: file.name,
       bulletBool: bullet,
@@ -52,7 +52,6 @@ const CourseForm = ({ setCourseFormOpen }) => {
 
     const course_data = await course_res.json();
     setLoading(false); // stop spinner
-    console.log(course_data);
 
     closeForm();
   };
