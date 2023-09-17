@@ -18,12 +18,10 @@ const CourseForm = ({ setCourseFormOpen }) => {
     // Update the formData object
     formData.append(
         "myFile",
-        this.state.selectedFile,
-        this.state.selectedFile.name
+        file,
+        file.name
     );
 
-    // Details of the uploaded file
-    console.log(this.state.selectedFile);
 
     // Request made to the backend api
     // Send formData object
