@@ -64,7 +64,7 @@ def choosePrompt(bulletBool, exampleBool, qnaBool):
     elif (qnaBool):
         modifier += modifiers_dict['qna']
 
-    return f"Restructure this content into its Key Concepts. Under each Key Concept, provide a detailed explanation{modifier}. Serve the response in Markdown format, use (#) to seperate the key concepts."
+    return f"Restructure this content into its Key Concepts. Under each Key Concept, provide a detailed explanation{modifier}. Serve the response in Markdown format, use (#) to seperate the key concepts and format the rest appropriately"
 
 def RunBackend(course_name, bulletBool, exampleBool, qnaBool):
     generate_markdown(f"../{course_name}", choosePrompt(bulletBool, exampleBool, qnaBool))

@@ -18,6 +18,6 @@ def mdToHtml(filename):
     with open(filename, 'r') as fin:
         rendered = mistletoe.markdown(fin)
         soup = BeautifulSoup(rendered, 'html.parser')
-        with open (f"{filename}.html", 'w') as file:
-            file.write(soup.prettify())
-
+        # with open (f"{filename}.html", 'w') as file:
+        #     file.write(soup.prettify())
+        return soup.prettify()
