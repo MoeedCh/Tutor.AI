@@ -338,6 +338,12 @@
   flex-direction: column;
 }
 
+.form label {
+  margin: 1rem 0;
+  font-size: 1.5rem;
+  font-weight: 500 bold;
+}
+
 .formSubmit {
   margin: 1rem;
   padding: 1rem;
@@ -370,6 +376,30 @@
   color: white;
   border-radius: 10px;
   background-color: #393939;
+}
+
+.modifiers {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: space-around;
+}
+
+.modifier {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modifier input {
+  height: 2rem;
+}
+
+.modifier h3 {
+  color: #393939;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 4px;
+  margin-right: 1rem;
 }
 
 /* End CourseForm Component Styles */

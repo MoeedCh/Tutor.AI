@@ -5,11 +5,11 @@ from Server import *
 from mdParser import *
 from CourseObject import *
 from firebaseManager import post_course_to_user
-
+from flask_cors import CORS
 from decodeEPUB import *
 
 app = Flask(__name__)
-
+cors = CORS(app)
 JSON_FOLDER = 'user_requests'
 os.makedirs(JSON_FOLDER, exist_ok=True)
 
@@ -34,7 +34,7 @@ def home():
 #     except Exception as e:
 #         return jsonify({'error': str(e)}), 500
     
-@app.route('/upload', methods=['POST'])
+@app.route('/api/upload', methods=['POST'])
 def upload_file():
     if 'file' not in request.files:
         return {'status': 'No file part in the request'}, 400
@@ -45,7 +45,7 @@ def upload_file():
         return {'status': 'No selected file'}, 400
 
     # If everything is okay, save the file
-    file.save('/path/to/save/' + file.filename)
+    file.save('../bookdata/' + file.filename)
     return {'status': 'File uploaded successfully'}
 
 # Generate Course endpoint
