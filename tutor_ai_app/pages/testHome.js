@@ -1,5 +1,5 @@
-import NavBar from "@/components/Navbar";
-import SideBar from "@/components/Sidebar";
+import NavBar from "@/components/navBar";
+import SideBar from "@/components/sideBar";
 import CourseContent from "@/components/main_content/CourseContent";
 import ChapterContent from "@/components/main_content/ChapterContent";
 import CourseForm from "@/components/sidebar/CourseForm";

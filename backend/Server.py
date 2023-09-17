@@ -2,7 +2,7 @@ import os
 
 from langchain.chains import ConversationalRetrievalChain
 from langchain.chat_models import ChatOpenAI
-from backend.Embeddings import VectorDatabase
+from Embeddings import VectorDatabase
 
 
 # class Runner:

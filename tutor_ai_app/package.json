@@ -12,6 +12,7 @@
     "autoprefixer": "10.4.15",
     "axios": "^1.5.0",
     "firebase": "^10.4.0",
+    "fs": "^0.0.1-security",
     "markdown-parser-react": "^1.1.2",
     "next": "13.4.19",
     "postcss": "8.4.29",

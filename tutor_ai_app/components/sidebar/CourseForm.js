@@ -1,28 +1,24 @@
 import React, { useState } from "react";
 import styles from "../../styles/custom.module.css";
 import Upload from "./Upload";
-import axios from "axios";
 
 const CourseForm = ({ setCourseFormOpen }) => {
   const [file, setFile] = useState(null);
 
   const onSubmit = async () => {
-    if (!file) return;
-    else {
-      console.log("Uploaded File Name:", file.name);
-    }
-
-    // Create an object of formData
     const formData = new FormData();
+    formData.append("file", file);
 
-    // Update the formData object
-    formData.append("myFile", file, file.name);
+    const response = await fetch("http://localhost:1234/api/upload_file", {
+      method: "POST",
+      body: formData,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
 
-    // Request made to the backend api
-    // Send formData object
-    axios.post("localhost:1234/api/upload_file", formData);
-
-    closeForm(); // close the form after submitting
+    const data = await response.json();
+    console.log(data);
   };
 
   const handleFileInputChange = (e) => {
