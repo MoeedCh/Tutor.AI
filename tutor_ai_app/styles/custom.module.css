@@ -390,6 +390,7 @@
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
+  text-decoration: underline;
 }
 
 .markdown h2 {
