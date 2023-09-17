@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "../styles/custom.module.css";
+import styles from "../../styles/custom.module.css";
 
 const ProfileInfo = ({ userName }) => {
     return (
