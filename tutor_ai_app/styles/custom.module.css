@@ -1,232 +1,416 @@
 .container {
-    background-color: #393939;
-    min-height: 100vh;
-    padding: 0 0.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .title a {
-    font-weight: bold;
-    color: #FF9900;
-    text-decoration: none;
-  }
-  
-  .title a:hover,
-  .title a:focus,
-  .title a:active {
-    text-decoration: underline;
-  }
-  
-  .title {
-    margin: 0 0 1rem;
-    line-height: 1.15;
-    font-size: 3.6rem;
-    text-align: center;
-  }
-  
-  .title,
-  .description {
-    text-align: center;
-    color: white;
-  }
-  
-  .description {
-    line-height: 1.5;
-    font-size: 1.5rem;
-  }
-  
+  background-color: #393939;
+  min-height: 100vh;
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title a {
+  font-weight: bold;
+  color: #ff9900;
+  text-decoration: none;
+}
+
+.title a:hover,
+.title a:focus,
+.title a:active {
+  text-decoration: underline;
+}
+
+.title {
+  margin: 0 0 1rem;
+  line-height: 1.15;
+  font-size: 3.6rem;
+  text-align: center;
+}
+
+.title,
+.description {
+  text-align: center;
+  color: white;
+}
+
+.description {
+  line-height: 1.5;
+  font-size: 1.5rem;
+}
+
+.grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  max-width: 800px;
+  margin-top: 3rem;
+}
+
+.card {
+  margin: 1rem;
+  flex-basis: 45%;
+  padding: 1.5rem;
+  text-align: center;
+  color: #393939;
+  background-color: #ff9900;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.card:hover,
+.card:focus,
+.card:active {
+  color: white;
+  box-shadow: 0 0 7px black; /* Add a white shadow on hover */
+}
+
+.card h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+}
+
+.card p {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+.logo {
+  height: 1em;
+}
+
+@media (max-width: 600px) {
   .grid {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-  
-    max-width: 800px;
-    margin-top: 3rem;
+    width: 100%;
+    flex-direction: column;
   }
-  
-  .card {
-    margin: 1rem;
-    flex-basis: 45%;
-    padding: 1.5rem;
-    text-align: center;
-    color: #393939;
-    background-color: #FF9900;
-    text-decoration: none;
-    border-radius: 10px;
-    transition:
-      color 0.15s ease,
-      border-color 0.15s ease;
+}
+
+/* Login Box Component Styles */
+.loginBox {
+  height: 586px;
+  width: 953px;
+}
+
+.loginBox .login {
+  height: 586px;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 963px;
+}
+
+.loginBox .overlap-group {
+  background-color: #383838;
+  height: 586px;
+  position: relative;
+  width: 953px;
+}
+
+.loginBox .overlap {
+  background-color: #d9d9d9;
+  border-radius: 5px;
+  height: 286px;
+  left: 294px;
+  position: absolute;
+  top: 150px;
+  width: 361px;
+}
+
+.loginBox .usernmae-text-field {
+  background-color: #d9d9d9;
+  border: 1px solid;
+  border-color: #00000080;
+  border-radius: 5px;
+  height: 49px;
+  left: 30px;
+  position: absolute;
+  top: 73px;
+  width: 304px;
+}
+
+.loginBox .pwd-text-field {
+  background-color: #d9d9d9;
+  border: 1px solid;
+  border-color: #00000080;
+  border-radius: 5px;
+  height: 49px;
+  left: 30px;
+  position: absolute;
+  top: 154px;
+  width: 304px;
+}
+
+.loginBox .div-wrapper {
+  background-color: #383838;
+  border: 1px solid;
+  border-color: #00000080;
+  border-radius: 5px;
+  height: 38px;
+  left: 112px;
+  position: absolute;
+  top: 216px;
+  width: 137px;
+}
+
+.loginBox .text-wrapper {
+  color: #ffffff;
+  font-family: "Inter-Bold", Helvetica;
+  font-size: 15px;
+  font-weight: 700;
+  height: 26px;
+  left: 21px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 5px;
+  width: 96px;
+}
+
+.loginBox .div {
+  color: #383838;
+  font-family: "Inter-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  left: 35px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 52px;
+  width: 96px;
+}
+
+.loginBox .text-wrapper-2 {
+  color: #383838;
+  font-family: "Inter-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  left: 30px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 135px;
+  width: 96px;
+}
+
+.loginBox .text-wrapper-3 {
+  color: #383838;
+  font-family: "Inter-Bold", Helvetica;
+  font-size: 30px;
+  font-weight: 700;
+  height: 40px;
+  left: 0;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 6px;
+  width: 61px;
+}
+
+.loginBox .text-wrapper-4 {
+  color: #ffffff;
+  font-family: "Inter-Bold", Helvetica;
+  font-size: 40px;
+  font-weight: 700;
+  height: 71px;
+  left: 260px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 79px;
+  width: 447px;
+}
+
+/* End Login Box Component Styles */
+
+/* NavBar Component Styles */
+.navBar {
+  background-color: #ff9900;
+  display: flex;
+  justify-content: space-between;
+}
+
+.profileInfo {
+  display: flex;
+  align-items: center;
+}
+
+.logoImage {
+  margin: 0.5rem;
+}
+
+/* End NavBar Component Styles */
+
+.mainDisplay {
+  border: solid 2px blue;
+  background-color: #4b4b4b;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+/* Sidebar Component Styles */
+
+.course {
+  background-color: #ff9900;
+  /* border-radius: 5px;
+  height: 40px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 200px; */
+}
+
+.courseCard {
+  margin: 1rem;
+  padding: 1rem;
+  text-align: center;
+  color: #393939;
+  background-color: #ff9900;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: color 0.05s ease, border-color 0.05s ease;
+}
+
+.courseCard:hover,
+.courseCard:focus,
+.courseCard:active,
+.logoImage:hover,
+.toggleSidebar:hover {
+  color: white;
+  box-shadow: 0 0 7px white; /* Add a white shadow on hover */
+}
+
+.newCourseCard:hover,
+.newCourseCard:focus,
+.newCourseCard:active {
+  color: white;
+  box-shadow: 0 0 7px #ff9900; /* Add a white shadow on hover */
+}
+
+.courseCard h5,
+.newCourseCard h5 {
+  font-size: 1.5rem;
+  font-weight: 500 bold;
+}
+
+.newCourseCard {
+  margin: 1rem;
+  padding: 1rem;
+  text-align: center;
+  color: #393939;
+  background-color: #d8ceae;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: color 0.05s ease, border-color 0.05s ease;
+}
+
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
   }
-  
-  .card:hover,
-  .card:focus,
-  .card:active {
-    color: white;
-    box-shadow: 0 0 7px black; /* Add a white shadow on hover */
+  100% {
+    transform: rotate(360deg);
   }
-  
-  .card h3 {
-    margin: 0 0 1rem 0;
-    font-size: 1.5rem;
-  }
-  
-  .card p {
-    margin: 0;
-    font-size: 1.25rem;
-    line-height: 1.5;
-  }
-  
-  .logo {
-    height: 1em;
-  }
-  
-  @media (max-width: 600px) {
-    .grid {
-      width: 100%;
-      flex-direction: column;
-    }
-  }
-  
-  /* Login Box Component Styles */
-  .loginBox {
-    height: 586px;
-    width: 953px;
-  }
-  
-  .loginBox .login {
-    height: 586px;
-    left: 0;
-    position: fixed;
-    top: 0;
-    width: 963px;
-  }
-  
-  .loginBox .overlap-group {
-    background-color: #383838;
-    height: 586px;
-    position: relative;
-    width: 953px;
-  }
-  
-  .loginBox .overlap {
-    background-color: #d9d9d9;
-    border-radius: 5px;
-    height: 286px;
-    left: 294px;
-    position: absolute;
-    top: 150px;
-    width: 361px;
-  }
-  
-  .loginBox .usernmae-text-field {
-    background-color: #d9d9d9;
-    border: 1px solid;
-    border-color: #00000080;
-    border-radius: 5px;
-    height: 49px;
-    left: 30px;
-    position: absolute;
-    top: 73px;
-    width: 304px;
-  }
-  
-  .loginBox .pwd-text-field {
-    background-color: #d9d9d9;
-    border: 1px solid;
-    border-color: #00000080;
-    border-radius: 5px;
-    height: 49px;
-    left: 30px;
-    position: absolute;
-    top: 154px;
-    width: 304px;
-  }
-  
-  .loginBox .div-wrapper {
-    background-color: #383838;
-    border: 1px solid;
-    border-color: #00000080;
-    border-radius: 5px;
-    height: 38px;
-    left: 112px;
-    position: absolute;
-    top: 216px;
-    width: 137px;
-  }
-  
-  .loginBox .text-wrapper {
-    color: #ffffff;
-    font-family: "Inter-Bold", Helvetica;
-    font-size: 15px;
-    font-weight: 700;
-    height: 26px;
-    left: 21px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    text-align: center;
-    top: 5px;
-    width: 96px;
-  }
-  
-  .loginBox .div {
-    color: #383838;
-    font-family: "Inter-Regular", Helvetica;
-    font-size: 12px;
-    font-weight: 400;
-    left: 35px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    top: 52px;
-    width: 96px;
-  }
-  
-  .loginBox .text-wrapper-2 {
-    color: #383838;
-    font-family: "Inter-Regular", Helvetica;
-    font-size: 12px;
-    font-weight: 400;
-    left: 30px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    top: 135px;
-    width: 96px;
-  }
-  
-  .loginBox .text-wrapper-3 {
-    color: #383838;
-    font-family: "Inter-Bold", Helvetica;
-    font-size: 30px;
-    font-weight: 700;
-    height: 40px;
-    left: 0;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    text-align: center;
-    top: 6px;
-    width: 61px;
-  }
-  
-  .loginBox .text-wrapper-4 {
-    color: #ffffff;
-    font-family: "Inter-Bold", Helvetica;
-    font-size: 40px;
-    font-weight: 700;
-    height: 71px;
-    left: 260px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    text-align: center;
-    top: 79px;
-    width: 447px;
-  }
-  
-  /* End Login Box Component Styles */
+}
+
+.animateSpinSlow {
+  animation: spin-slow 4s linear infinite; /* Adjust the duration as needed */
+}
+
+.plus {
+  font-weight: bold;
+}
+
+/* End Sidebar Component Styles */
+
+/* Content Component Styles */
+.content {
+  height: 100vh - 6rem;
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 3rem;
+  align-items: center;
+}
+
+.content h1 {
+  font-size: 4rem;
+  font-weight: 500 bold;
+  margin: 1rem;
+  color: white;
+  padding-bottom: 2rem;
+}
+
+.shadow {
+  text-shadow: black 1px 0 10px;
+}
+
+.bubbleSpace {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* Align items to the left */
+}
+
+.chapterBubble {
+  flex-grow: 1; /* Allow each item to take up all available space in its row */
+  width: calc(50% - 2rem); /* Adjust the width as needed */
+  height: 200px;
+  margin: 1rem;
+  padding: 1rem;
+  color: #393939;
+  background-color: #d8ceae;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: color 0.05s ease, border-color 0.05s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chapterBubble:hover,
+.chapterBubble:focus,
+.chapterBubble:active {
+  color: white;
+  box-shadow: 0 0 12px black; /* Add a white shadow on hover */
+}
+
+.chapterBubble h1 {
+  color: #404040;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.markdown h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.markdown h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.markdown p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.markdown a {
+  color: blue;
+  text-decoration: underline;
+}
+
+.markdown code {
+  color: lime;
+}
+
+/* End Content Component Styles */
