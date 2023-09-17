@@ -1,0 +1,74 @@
+<h1>
+ Key Concept 1: The do/while Statement
+</h1>
+<p>
+ The do/while statement is a type of loop in programming that checks the condition after executing the loop's body at least once. This is in contrast to the while loop, which checks the condition before executing the loop's body.
+</p>
+<p>
+ Example:
+</p>
+<pre><code class="language-cpp">int i = 1;
+do {
+    cout &lt;&lt; i &lt;&lt; endl;
+    i++;
+} while (i &lt;= 5);
+</code></pre>
+<p>
+ In this example, the do/while loop will execute the body at least once, even if the condition (i &lt;= 5) is false. The output will be:
+</p>
+<pre><code>1
+2
+3
+4
+5
+</code></pre>
+<h1>
+ Key Concept 2: Top-checking Loop vs Bottom-checking Loop
+</h1>
+<p>
+ A top-checking loop, such as the while loop, checks the condition before executing the loop's body. On the other hand, a bottom-checking loop, such as the do/while loop, checks the condition after executing the loop's body at least once.
+</p>
+<p>
+ Example:
+</p>
+<pre><code class="language-cpp">int i = 10;
+while (i &lt; 5) {
+    cout &lt;&lt; i &lt;&lt; endl;
+    i++;
+}
+</code></pre>
+<p>
+ In this example, since the condition (i &lt; 5) is false initially, the loop's body will not be executed.
+</p>
+<p>
+ Example:
+</p>
+<pre><code class="language-cpp">int i = 10;
+do {
+    cout &lt;&lt; i &lt;&lt; endl;
+    i++;
+} while (i &lt; 5);
+</code></pre>
+<p>
+ In this example, the do/while loop will execute the body at least once, even though the condition (i &lt; 5) is false. The output will be:
+</p>
+<pre><code>10
+</code></pre>
+<h1>
+ Key Concept 3: Use of do/while loop to check for valid input
+</h1>
+<p>
+ The do/while loop is commonly used to repeatedly prompt the user for input until a valid input is provided. The loop's body executes at least once, allowing the user to enter a value before checking if it meets the desired condition.
+</p>
+<p>
+ Example:
+</p>
+<pre><code class="language-cpp">int value;
+do {
+    cout &lt;&lt; "Enter a number between 1 and 100: ";
+    cin &gt;&gt; value;
+} while (value &lt; 1 || value &gt; 100);
+</code></pre>
+<p>
+ In this example, the loop will continue to prompt the user for input until a number between 1 and 100 is entered.
+</p>
