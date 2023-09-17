@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify
 import os
 from Server import *
 from mdParser import *
+from decodeEPUB import *
 
 app = Flask(__name__)
 
@@ -28,6 +29,8 @@ def generate_course():
             bulletBool = request_data['bulletBool']
             exampleBool = request_data['exampleBool']
             qnaBool = request_data['qnaBool']
+            encoded_book = request_data['epubData']
+            decode_book(encoded_book)
 
             RunBackend(course_name, bulletBool, exampleBool, qnaBool)
             
