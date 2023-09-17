@@ -29,4 +29,3 @@ const encodedFile = (file) => {
   
 };
 
-console.log(`JSON data saved to ${jsonFilePath}`);

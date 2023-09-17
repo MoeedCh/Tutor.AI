@@ -1,24 +1,29 @@
 import Head from "next/head";
 import Link from "next/link";
-import Image from "next/image"
+import Login from "@/components/login_page/Login"
+import Image from "next/image";
 import styles from "../styles/custom.module.css";
+import { useState } from "react";
 
 export default function Home() {
+  const [popup, setPopup] = useState(null);
+
   return (
     <div className={styles.container}>
       <Header />
 
       <main>
-        <Image src="/images/banner.png" width={800} height={600}/>
+      {popup && <Login setPopup={setPopup} />}
+        <Image src="/images/banner.png" width={800} height={600} />
         <p className={styles.description}>
-          Learning made easy, with the help of AI.
+          Learning made easy, powered by OpenAI.
         </p>
 
         <div className={styles.grid}>
           <Link href="/signup" className={styles.card}>
-              <h3>Create Account &rarr;</h3>
+            <h3>Create Account &rarr;</h3>
           </Link>
-          <Link href="/testHome" className={styles.card}>
+          <Link href="/" className={styles.card} onClick={() => setPopup(true)}>
             <h3>Log In &rarr;</h3>
           </Link>
         </div>
@@ -44,8 +49,8 @@ export default function Home() {
 function Header() {
   return (
     <Head>
-        <title>Tutor.AI</title>
-        <link rel="icon" href="/cap.png" />
-      </Head>
-  )
+      <title>Tutor.AI</title>
+      <link rel="icon" href="/cap.png" />
+    </Head>
+  );
 }

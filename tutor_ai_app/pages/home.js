@@ -33,7 +33,7 @@ export default function testHome() {
   return (
     <main>
       {/* Navbar */}
-      <NavBar userName={userName} />\
+      <NavBar userName={userName} />
 
       {courseFormOpen && <CourseForm setCourseFormOpen={setCourseFormOpen} />}
 

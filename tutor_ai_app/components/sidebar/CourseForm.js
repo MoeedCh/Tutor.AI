@@ -8,13 +8,13 @@ const CourseForm = ({ setCourseFormOpen }) => {
   const [example, setExample] = useState(false);
   const [bullet, setBullet] = useState(false);
   const [qna, setQna] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = async () => {
     if (!file || (!example && !bullet && !qna) || !courseName) {
       console.error("No file selected");
       return;
     }
-    console.log(file.name);
 
     // send file to api endpoint: http://localhost:1234/api/upload
     const formData = new FormData();
@@ -24,7 +24,6 @@ const CourseForm = ({ setCourseFormOpen }) => {
       body: formData,
     });
     const data = await res.json();
-    console.log(data);
 
     // send json to api endpoint: http://localhost:1234/api/generate_course
     const course_request = {
@@ -38,6 +37,8 @@ const CourseForm = ({ setCourseFormOpen }) => {
 
     // send json through post request to http://localhost:1234/api/generate_course
 
+    setLoading(true); // start spinner
+    
     const course_res = await fetch(
       "http://localhost:1234/api/generate_course",
       {
@@ -50,9 +51,10 @@ const CourseForm = ({ setCourseFormOpen }) => {
     );
 
     const course_data = await course_res.json();
+    setLoading(false); // stop spinner
     console.log(course_data);
 
-    // closeForm();
+    closeForm();
   };
 
   const handleCourseNameChange = (e) => {
@@ -94,6 +96,7 @@ const CourseForm = ({ setCourseFormOpen }) => {
           </button>
         </div>
         <Upload
+          loading={loading}
           handleCourseNameChange={(e) => handleCourseNameChange(e)}
           handleFileInputChange={(e) => handleFileInputChange(e)}
           handleQnaChange={(e) => handleQnaChange(e)}

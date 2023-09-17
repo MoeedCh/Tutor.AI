@@ -1,8 +1,32 @@
 import styles from "../../styles/custom.module.css";
+import Image from "next/image";
 
-const Upload = ({ handleCourseNameChange, handleFileInputChange, handleQnaChange, handleBulletChange, handleExampleChange, onSubmit }) => {
+const Upload = ({
+  loading,
+  handleCourseNameChange,
+  handleFileInputChange,
+  handleQnaChange,
+  handleBulletChange,
+  handleExampleChange,
+  onSubmit,
+}) => {
   return (
     <div className="flex flex-col justify-between h-full">
+      {/* put "/images/spinner" in absolute position middle of Upload */}
+      {loading && (
+        // make rest of component greyed out
+        <div className="fixed inset-0 bg-black opacity-50">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <Image
+              src="/images/orange_spinner.png"
+              alt="Loading Spinner"
+              width={400}
+              height={400}
+              className={styles.animateSpinSlow}
+            />
+          </div>
+        </div>
+      )}
       <div>
         {/* Course Name */}
         <div className="mb-5">
@@ -33,18 +57,19 @@ const Upload = ({ handleCourseNameChange, handleFileInputChange, handleQnaChange
 
         {/* Course Modifiers */}
         <div className="mb-3">
-          <label className="mb-5 inline-block">Course Modifiers (Choose one for best performance)</label>
+          <label className="mb-5 inline-block">
+            Course Modifiers (Choose one for best performance)
+          </label>
           <div className={styles.modifiers}>
             <div className={styles.modifier}>
-            <h3>Examplified Format</h3>
+              <h3>Examplified Format</h3>
               <input
                 type="checkbox"
-
                 onChange={handleExampleChange} // Call this function when input changes
               />
             </div>
             <div className={styles.modifier}>
-            <h3>Bulleted Format</h3>
+              <h3>Bulleted Format</h3>
               <input
                 type="checkbox"
                 onChange={handleBulletChange} // Call this function when input changes
