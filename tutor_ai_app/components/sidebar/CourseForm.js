@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "../../styles/custom.module.css";
 import Upload from "./Upload";
-import axios from 'axios';
+import axios from "axios";
 
 const CourseForm = ({ setCourseFormOpen }) => {
   const [file, setFile] = useState(null);
@@ -14,14 +14,9 @@ const CourseForm = ({ setCourseFormOpen }) => {
 
     // Create an object of formData
     const formData = new FormData();
- 
-    // Update the formData object
-    formData.append(
-        "myFile",
-        file,
-        file.name
-    );
 
+    // Update the formData object
+    formData.append("myFile", file, file.name);
 
     // Request made to the backend api
     // Send formData object
@@ -34,11 +29,9 @@ const CourseForm = ({ setCourseFormOpen }) => {
     setFile(e.target.files[0]); // get the first file
   };
 
-
   const closeForm = () => {
     setCourseFormOpen(false);
   };
-
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
@@ -49,9 +42,11 @@ const CourseForm = ({ setCourseFormOpen }) => {
       <div
         className={`relative z-50 w-2/3 h-5/6 flex flex-col border p-8 shadow-md rounded-[15px] ${styles.form}`}
       >
-        <button className={styles.quit} onClick={() => closeForm()}>
-          Exit
-        </button>
+        <div className="flex justify-end">
+          <button className={styles.quit} onClick={() => closeForm()}>
+            Exit
+          </button>
+        </div>
         <Upload
           handleFileInputChange={(e) => handleFileInputChange(e)}
           onSubmit={() => onSubmit()}
