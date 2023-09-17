@@ -2,6 +2,7 @@ import json
 from flask import Flask, request, jsonify
 import os
 from Server import *
+from mdParser import *
 
 app = Flask(__name__)
 
@@ -36,6 +37,8 @@ def generate_course():
             return jsonify({'error': 'No JSON data provided in the request'}), 400
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+
 
 if __name__ == '__main__':
     app.run(host='localhost', port=1234, debug=True)
