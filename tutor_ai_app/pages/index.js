@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image"
 import styles from "../styles/custom.module.css";
 
 export default function Home() {
@@ -8,10 +9,7 @@ export default function Home() {
       <Header />
 
       <main>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Tutor.AI!</a>
-        </h1>
-
+        <Image src="/images/banner.png" width={800} height={600}/>
         <p className={styles.description}>
           Learning made easy, with the help of AI.
         </p>
@@ -20,8 +18,7 @@ export default function Home() {
           <Link href="/signup" className={styles.card}>
               <h3>Create Account &rarr;</h3>
           </Link>
-
-          <Link href="/login" className={styles.card}>
+          <Link href="/testHome" className={styles.card}>
             <h3>Log In &rarr;</h3>
           </Link>
         </div>
@@ -48,7 +45,7 @@ function Header() {
   return (
     <Head>
         <title>Tutor.AI</title>
-        <link rel="icon" href="../public/cap.png" />
+        <link rel="icon" href="/cap.png" />
       </Head>
   )
 }
