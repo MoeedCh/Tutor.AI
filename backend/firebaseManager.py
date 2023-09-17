@@ -1,3 +1,4 @@
+import json
 import os
 
 import firebase_admin
@@ -29,4 +30,4 @@ def upload_markdown_to_course(user, course, markdown_directory):
         print("Markdown added to course")
 
 
-upload_markdown_to_course("Andrew", 'Intro to Python', 'cache/python-books_A_Practical_Introduction_to_Python_Programming_Heinold.epub')
+#upload_markdown_to_course("Andrew", 'Intro to Python', 'cache/python-books_A_Practical_Introduction_to_Python_Programming_Heinold.epub')

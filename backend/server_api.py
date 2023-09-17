@@ -3,6 +3,9 @@ from flask import Flask, request, jsonify
 import os
 from Server import *
 from mdParser import *
+from CourseObject import *
+from firebaseManager import post_course_to_user
+
 from decodeEPUB import *
 
 app = Flask(__name__)
@@ -25,15 +28,20 @@ def generate_course():
         # Check if the JSON data is present in the request
         if request_data:
             # Generate a unique filename
-            course_name = request_data['course_materials']
+            user = request_data['user']
+            course_name = request_data['course_name']
+            course_materials = request_data['course_materials']
             bulletBool = request_data['bulletBool']
             exampleBool = request_data['exampleBool']
             qnaBool = request_data['qnaBool']
             encoded_book = request_data['epubData']
             decode_book(encoded_book)
 
-            RunBackend(course_name, bulletBool, exampleBool, qnaBool)
-            
+            RunBackend(f"bookdata/{course_materials}", bulletBool, exampleBool, qnaBool)
+
+            c = Course(user, course_name, course_materials, bulletBool, exampleBool, qnaBool)
+            c.add_chapters()
+            post_course_to_user(user, c.to_dict())
 
             return "Success", 200
         else:
