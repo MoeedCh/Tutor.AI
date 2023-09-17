@@ -20,7 +20,7 @@ const CourseForm = ({ setCourseFormOpen }) => {
 
     // Request made to the backend api
     // Send formData object
-    axios.post("localhost:1234/generate_course", formData);
+    axios.post("localhost:1234/api/upload_file", formData);
 
     closeForm(); // close the form after submitting
   };
