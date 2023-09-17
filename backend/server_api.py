@@ -18,6 +18,23 @@ os.makedirs(JSON_FOLDER, exist_ok=True)
 def home():
     return "Tutor.AI Server"
 
+@app.route('/api/upload_file')
+def upload_file():
+    try:
+        # Get JSON Data from the request
+        request_data = request.get_json()
+
+        # Check if the JSON data is present in the request
+        if request_data:
+            print(request_data)
+            print(type(request_data))
+            return "Success", 200
+        else:
+            return jsonify({'error': 'No JSON data provided in the request'}), 400
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
+
 # Generate Course endpoint
 @app.route('/api/generate_course', methods=['POST'])
 def generate_course():
@@ -34,8 +51,8 @@ def generate_course():
             bulletBool = request_data['bulletBool']
             exampleBool = request_data['exampleBool']
             qnaBool = request_data['qnaBool']
-            encoded_book = request_data['epubData']
-            decode_book(encoded_book)
+            # encoded_book = request_data['epubData']
+            # decode_book(encoded_book, course_materials)
 
             RunBackend(f"bookdata/{course_materials}", bulletBool, exampleBool, qnaBool)
 
