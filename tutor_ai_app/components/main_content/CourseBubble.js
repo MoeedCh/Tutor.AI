@@ -1,4 +1,4 @@
-import styles from '../styles/custom.module.css';
+import styles from '../../styles/custom.module.css';
 
 const CourseBubble = ({name, onClick}) => {
     return (

@@ -60,8 +60,6 @@ export const getUserCourses = async (userId) => {
 
 export const getUserCourse = async (userId, courseName) => {
   const courses = await getUserCourses(userId);
-  console.log("courses:");
-  console.log(courses);
 
   return courses[courseName];
 }
