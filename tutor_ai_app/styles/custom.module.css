@@ -356,6 +356,9 @@
 }
 
 .quit {
+  width: 30%;
+  color: white;
+  background-color: #393939;
   float: inline-end;
 }
 
