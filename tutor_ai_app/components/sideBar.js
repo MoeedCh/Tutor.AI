@@ -20,7 +20,6 @@ const SideBar = ({ courses, setCourseFocus, setChapterFocus, setFocusType, setCo
   };
 
   const openCourseForm = () => {
-    console.log("openCourseForm is called"); // Log that the function is called
     setCourseFormOpen(true);
   };
 

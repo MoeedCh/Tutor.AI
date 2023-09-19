@@ -334,6 +334,14 @@
 .form {
   background-color: #d8ceae;
   color: #393939;
+  display: flex;
+  flex-direction: column;
+}
+
+.form label {
+  margin: 1rem 0;
+  font-size: 1.5rem;
+  font-weight: 500 bold;
 }
 
 .formSubmit {
@@ -349,17 +357,49 @@
 
 .formSubmit:hover,
 .formSubmit:focus,
-.formSubmit:active {
+.formSubmit:active,
+.quit:hover,
+.quit:focus,
+.quit:active {
   background-color: #4b4b4b;
   color: #ff9900;
   box-shadow: 0 0 7px black; /* Add a white shadow on hover */
 }
 
+.formSubmit h1 {
+  font-size: 1.5rem;
+  font-weight: 500 bold;
+}
+
 .quit {
-  width: 30%;
+  width: 15%;
   color: white;
+  border-radius: 10px;
   background-color: #393939;
-  float: inline-end;
+}
+
+.modifiers {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: space-around;
+}
+
+.modifier {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modifier input {
+  height: 2rem;
+}
+
+.modifier h3 {
+  color: #393939;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 4px;
+  margin-right: 1rem;
 }
 
 /* End CourseForm Component Styles */

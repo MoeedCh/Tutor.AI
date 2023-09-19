@@ -5,11 +5,11 @@ from Server import *
 from mdParser import *
 from CourseObject import *
 from firebaseManager import post_course_to_user
-
+from flask_cors import CORS
 from decodeEPUB import *
 
 app = Flask(__name__)
-
+cors = CORS(app)
 JSON_FOLDER = 'user_requests'
 os.makedirs(JSON_FOLDER, exist_ok=True)
 
@@ -18,22 +18,35 @@ os.makedirs(JSON_FOLDER, exist_ok=True)
 def home():
     return "Tutor.AI Server"
 
-@app.route('/api/upload_file')
-def upload_file():
-    try:
-        # Get JSON Data from the request
-        request_data = request.get_json()
+# @app.route('/api/upload_file', methods=['POST'])
+# def upload_file():
+#     try:
+#         # Get JSON Data from the request
+#         request_data = request.get_json()
 
-        # Check if the JSON data is present in the request
-        if request_data:
-            print(request_data)
-            print(type(request_data))
-            return "Success", 200
-        else:
-            return jsonify({'error': 'No JSON data provided in the request'}), 400
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+#         # Check if the JSON data is present in the request
+#         if request_data:
+#             print(request_data)
+#             print(type(request_data))
+#             return "Success", 200
+#         else:
+#             return jsonify({'error': 'No JSON data provided in the request'}), 400
+#     except Exception as e:
+#         return jsonify({'error': str(e)}), 500
     
+@app.route('/api/upload', methods=['POST'])
+def upload_file():
+    if 'file' not in request.files:
+        return {'status': 'No file part in the request'}, 400
+
+    file = request.files['file']
+
+    if file.filename == '':
+        return {'status': 'No selected file'}, 400
+
+    # If everything is okay, save the file
+    file.save('../bookdata/' + file.filename)
+    return {'status': 'File uploaded successfully'}
 
 # Generate Course endpoint
 @app.route('/api/generate_course', methods=['POST'])

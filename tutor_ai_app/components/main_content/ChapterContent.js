@@ -8,9 +8,7 @@ const CourseContent = ({ courses, courseFocus, chapterFocus }) => {
   useEffect(() => { // this is where we'll walk further down the hierarchy from chapter key to get the markdown content
     async function fetchMarkdown() {
       if (chapterFocus) {
-        console.log(chapterFocus);
         const markdown = courses[courseFocus]['chapters'][chapterFocus]
-        console.log(markdown);
         setMarkdown(markdown);
       }
     }
