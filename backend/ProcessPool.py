@@ -27,7 +27,7 @@ class ProcessPool:
         self.tasks = multiprocessing.JoinableQueue()
         self.results = multiprocessing.Manager().Queue()
         self.task_completed = multiprocessing.Event()  # <-- Add an event object
-        self.num_cores = multiprocessing.cpu_count()
+        self.num_cores = multiprocessing.cpu_count()-1
         self.processes = []
 
     def start_workers(self):

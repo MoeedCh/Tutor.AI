@@ -113,7 +113,8 @@ def main():
 
     pool = ProcessPool()
     user_info = {"user":"Andrew", "course_name":"JavaScript", "course_materials":"Java_Script.epub", "bulletBool":True, "exampleBool":False, "qnaBool":False}
-    add_epub("../bookdata/Java_Script.epub", pool,user_info)
+    c = Course(user_info["user"], user_info["course_name"], user_info["course_materials"], user_info["bulletBool"], user_info['exampleBool'], user_info['qnaBool'])
+    add_epub("../bookdata/Java_Script.epub", pool,c)
 
     pool.close()
     end_time = time.time()
