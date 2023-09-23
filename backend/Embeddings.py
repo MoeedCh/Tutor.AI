@@ -11,7 +11,9 @@ from ebooklib import epub
 # Load in env variables
 from dotenv import load_dotenv
 
-from backend.ProcessPool import ProcessPool
+from CourseObject import *
+from ProcessPool import ProcessPool
+
 load_dotenv()
 
 llm = ChatOpenAI(model_name="gpt-3.5-turbo")
@@ -45,7 +47,7 @@ def split_text(loader, max_chunk_size=2000):
             documents.append(text_splitter.split_documents(l))
     return documents
 
-def create_chapter(chapter_name, epub_name, text):
+def create_chapter(chapter_name, epub_name, text, course):
     #soup = BeautifulSoup(text, "html.parser")
     tree = lxml.html.fromstring(text)
     #t = soup.get_text().strip() # Remove whitespace
@@ -57,6 +59,8 @@ def create_chapter(chapter_name, epub_name, text):
 
     create_index(chapter_name, epub_name, documents)
     process_chapter(epub_name,choosePrompt(True,False,False),chapter_name)
+    course.add_chapters()
+    post_course_to_user(course.user, course.to_dict())
 
 
 def process_chapter(path_to_epub, prompt, chapter_index):
@@ -73,15 +77,17 @@ def process_chapter(path_to_epub, prompt, chapter_index):
     return result["answer"]
 
 
-def add_epub(epub_path, pool):
+def add_epub(epub_path, pool, course):
+
     book = epub.read_epub(epub_path)
     text = []
     name = os.path.basename(epub_path)
     i = 0
     for item in book.get_items():
         if item.get_type() == ebooklib.ITEM_DOCUMENT:
-            pool.submit_task(create_chapter,(str(i),name, item.get_content()), 1)
+            pool.submit_task(create_chapter,(str(i),name, item.get_content(), course), 1)
             i += 1
+
 
 
 def choosePrompt(bulletBool, exampleBool, qnaBool):
@@ -106,8 +112,8 @@ def main():
     start_time = time.time()
 
     pool = ProcessPool()
-
-    add_epub("../bookdata/Java_Script.epub", pool)
+    user_info = {"user":"Andrew", "course_name":"JavaScript", "course_materials":"Java_Script.epub", "bulletBool":True, "exampleBool":False, "qnaBool":False}
+    add_epub("../bookdata/Java_Script.epub", pool,user_info)
 
     pool.close()
     end_time = time.time()

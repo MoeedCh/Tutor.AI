@@ -1,18 +1,16 @@
 import json
-from flask import Flask, request, jsonify
-import os
-from Server import *
-from mdParser import *
-from CourseObject import *
-from firebaseManager import post_course_to_user
-from flask_cors import CORS
-from decodeEPUB import *
+import time
 
+from flask import Flask, request, jsonify
+from CourseObject import *
+from flask_cors import CORS
+from ProcessPool import ProcessPool
 app = Flask(__name__)
 cors = CORS(app)
 JSON_FOLDER = 'user_requests'
 os.makedirs(JSON_FOLDER, exist_ok=True)
-
+from Embeddings import *
+load_dotenv()
 # Home endpoint
 @app.route('/')
 def home():
@@ -66,11 +64,14 @@ def generate_course():
             qnaBool = request_data['qnaBool']
             # encoded_book = request_data['epubData']
             # decode_book(encoded_book, course_materials)
-
-            RunBackend(f"bookdata/{course_materials}", bulletBool, exampleBool, qnaBool)
-
+            start_time = time.time()
             c = Course(user, course_name, course_materials, bulletBool, exampleBool, qnaBool)
-            c.add_chapters()
+            add_epub("../bookdata/" + course_materials, pool, c)
+
+
+            end_time = time.time()
+            elapsed_time = end_time - start_time
+            print(f"Time elapsed: {elapsed_time} seconds")
             post_course_to_user(user, c.to_dict())
 
             return "Success", 200
@@ -82,4 +83,6 @@ def generate_course():
 
 
 if __name__ == '__main__':
+    pool = ProcessPool()
+
     app.run(host='localhost', port=1234, debug=True)
