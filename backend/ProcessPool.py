@@ -20,21 +20,26 @@ def _worker(tasks, results, task_completed):
         result = func(*args)
         results.put(result)  # Store the result
         task_completed.set()  # Signal that the task has been completed
-        tasks.task_done()
+        task_completed.clear()  # Clear the event
+    # Exit the process when there are no more tasks to be executed
+    multiprocessing.current_process().terminate()
 
+    
 class ProcessPool:
     def __init__(self):
         self.tasks = multiprocessing.JoinableQueue()
         self.results = multiprocessing.Manager().Queue()
-        self.task_completed = multiprocessing.Event()  # <-- Add an event object
-        self.num_cores = multiprocessing.cpu_count()-1
+        self.task_completed = multiprocessing.Event()
+        self.num_cores = multiprocessing.cpu_count() - 1
         self.processes = []
+        self.is_running = False  # <-- Add a flag to indicate whether the worker processes are running
 
     def start_workers(self):
         for _ in range(self.num_cores):
             p = multiprocessing.Process(target=_worker, args=(self.tasks, self.results, self.task_completed))
             p.start()
             self.processes.append(p)
+        self.is_running = True  # <-- Set the flag to indicate that the worker processes are running
 
     def get_result(self):
         return self.results.get()
@@ -42,7 +47,7 @@ class ProcessPool:
     def submit_task(self, func, args, priority):
         task_data = (func, args)
         self.tasks.put((priority, task_data))
-        if len(self.processes) < self.num_cores:  # Start a new process if there are idle cores
+        if not self.is_running:  # <-- Start the worker processes only when the flag is set
             self.start_workers()
 
     def close(self):

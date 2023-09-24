@@ -13,6 +13,7 @@ from dotenv import load_dotenv
 
 from CourseObject import *
 from ProcessPool import ProcessPool
+from backend.firebaseManager import post_course_to_user
 
 load_dotenv()
 
