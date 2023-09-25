@@ -22,9 +22,10 @@ def _worker(tasks, results, task_completed):
         task_completed.set()  # Signal that the task has been completed
         task_completed.clear()  # Clear the event
     # Exit the process when there are no more tasks to be executed
+    print(f"Worker {multiprocessing.current_process().name} exiting...")
     multiprocessing.current_process().terminate()
 
-    
+
 class ProcessPool:
     def __init__(self):
         self.tasks = multiprocessing.JoinableQueue()
@@ -38,6 +39,7 @@ class ProcessPool:
         for _ in range(self.num_cores):
             p = multiprocessing.Process(target=_worker, args=(self.tasks, self.results, self.task_completed))
             p.start()
+            print(f"Started worker {p.name}")
             self.processes.append(p)
         self.is_running = True  # <-- Set the flag to indicate that the worker processes are running
 

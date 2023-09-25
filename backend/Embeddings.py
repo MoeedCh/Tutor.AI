@@ -60,7 +60,8 @@ def create_chapter(chapter_name, epub_name, text, course):
 
     create_index(chapter_name, epub_name, documents)
     process_chapter(epub_name,choosePrompt(True,False,False),chapter_name)
-    course.add_chapters()
+    #course.add_chapters()
+    course.add_chapter(chapter_name + ".md")
     post_course_to_user(course.user, course.to_dict())
 
 
@@ -86,7 +87,7 @@ def add_epub(epub_path, pool, course):
     i = 0
     for item in book.get_items():
         if item.get_type() == ebooklib.ITEM_DOCUMENT:
-            pool.submit_task(create_chapter,(str(i),name, item.get_content(), course), 1)
+            pool.submit_task(create_chapter,(str(i),name, item.get_content(), course), i)
             i += 1
 
 
